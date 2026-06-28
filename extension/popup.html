@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deep Media Downloader</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Midias da pagina</h1>
+      <p id="pageTitle">Aba atual</p>
+    </div>
+    <button id="refreshButton" class="icon-button" title="Atualizar lista" aria-label="Atualizar lista">R</button>
+  </header>
+
+  <section class="toolbar">
+    <button id="deepScanButton" class="primary">Busca profunda</button>
+    <button id="clearButton">Limpar</button>
+  </section>
+
+  <section class="quick-toggle-row" aria-label="Atalhos na pagina">
+    <span>Botões na página</span>
+    <label class="switch">
+      <input id="quickButtonsToggle" type="checkbox">
+      <span class="switch-track"></span>
+    </label>
+  </section>
+
+  <section class="stats" aria-label="Resumo">
+    <span id="totalCount">0 total</span>
+    <span id="imageCount">0 img</span>
+    <span id="videoCount">0 video</span>
+    <span id="streamCount">0 HLS</span>
+  </section>
+
+  <section class="filters" aria-label="Filtros">
+    <button class="filter active" data-filter="all">Tudo</button>
+    <button class="filter" data-filter="image">Fotos</button>
+    <button class="filter" data-filter="video">Videos</button>
+    <button class="filter" data-filter="hls">HLS</button>
+  </section>
+
+  <input id="searchInput" type="search" placeholder="Filtrar por URL ou nome" autocomplete="off">
+
+  <main id="list" class="list" aria-live="polite"></main>
+
+  <footer>
+    <div class="footer-status">
+      <span id="status">Pronto</span>
+      <button id="coffeeButton" class="coffee-button">gostou? que tal me pagar um cafe?</button>
+    </div>
+  </footer>
+
+  <div id="pixDialog" class="pix-dialog" hidden>
+    <div class="pix-card" role="dialog" aria-modal="true" aria-labelledby="pixTitle">
+      <button id="closePixButton" class="pix-close" aria-label="Fechar Pix">x</button>
+      <h2 id="pixTitle">Pix de R$ 2,00</h2>
+      <p id="donationText">Escaneie o QR Code ou copie o Pix copia e cola.</p>
+      <canvas id="pixQrCode" width="220" height="220"></canvas>
+      <textarea id="pixValue" readonly></textarea>
+      <button id="copyPixButton" class="primary">Copiar Pix</button>
+      <button id="paypalButton" class="primary" hidden>Donate $1 with PayPal</button>
+    </div>
+  </div>
+
+  <template id="itemTemplate">
+    <article class="media-item">
+      <div class="thumb"></div>
+      <div class="meta">
+        <div class="name"></div>
+        <div class="url"></div>
+        <div class="details"></div>
+        <div class="badges"></div>
+      </div>
+      <div class="actions">
+        <button class="previewButton">Preview</button>
+        <button class="open">Abrir</button>
+        <button class="copy">Copiar</button>
+        <button class="download">Baixar</button>
+      </div>
+      <div class="preview"></div>
+    </article>
+  </template>
+
+  <script src="vendor/qrcode.min.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
